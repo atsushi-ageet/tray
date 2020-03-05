@@ -137,16 +137,28 @@ public class ImportPreferences extends TrayPreferences {
 }
 ```
 
-## Getting Started [![Download](https://api.bintray.com/packages/passsy/maven/Tray/images/download.svg) ](https://bintray.com/passsy/maven/Tray/_latestVersion)
+## Getting Started
 
 ##### Add Tray to your project
 
-Tray is available via [jcenter](http://blog.bintray.com/2015/02/09/android-studio-migration-from-maven-central-to-jcenter/)
+Tray is available via jitpack
 
-```java
+/build.gradle
+```groovy
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+
+```
+
+/app/build.gradle
+```groovy
 
 dependencies {
-    compile 'net.grandcentrix.tray:tray:0.12.0'
+    compile 'com.github.atsushi-ageet:tray:0.13.0'
 }
 
 ```
