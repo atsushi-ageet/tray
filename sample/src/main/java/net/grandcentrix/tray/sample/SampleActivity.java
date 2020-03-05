@@ -28,19 +28,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-import rx.Observable;
-import rx.functions.Func1;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * Created by pascalwelsch on 2/7/15.
@@ -197,14 +197,9 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private List<String> getNiceString(final Collection<TrayItem> items) {
-        return Observable.from(items)
-                .map(new Func1<TrayItem, String>() {
-                    @Override
-                    public String call(final TrayItem trayItem) {
-                        return "key: '" + trayItem.key() + "' value '" + trayItem.value() + "'";
-                    }
-                })
-                .toList().toBlocking().first();
+        return Observable.fromIterable(items)
+                .map(trayItem -> "key: '" + trayItem.key() + "' value '" + trayItem.value() + "'")
+                .toList().blockingGet();
     }
 
     private void importSharedPref() {
