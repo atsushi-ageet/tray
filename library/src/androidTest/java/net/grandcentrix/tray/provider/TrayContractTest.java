@@ -26,7 +26,7 @@ public class TrayContractTest extends TrayProviderTestCase {
 
     public void testGenerateContentUri() throws Exception {
         Uri uri = TrayContract.generateContentUri(getContext());
-        assertEquals("content://net.grandcentrix.tray.preferences.test/preferences",
+        assertEquals("content://net.grandcentrix.tray.test/preferences",
                 uri.toString());
 
         TrayContract.sAuthority = "asdf";
@@ -36,7 +36,7 @@ public class TrayContractTest extends TrayProviderTestCase {
 
     public void testGenerateInternalContentUri() throws Exception {
         Uri uri = TrayContract.generateInternalContentUri(getContext());
-        assertEquals("content://net.grandcentrix.tray.preferences.test/internal_preferences",
+        assertEquals("content://net.grandcentrix.tray.test/internal_preferences",
                 uri.toString());
 
         TrayContract.sAuthority = "blubb";

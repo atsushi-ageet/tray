@@ -58,7 +58,7 @@ public class AbstractTrayPreferenceTest extends TestCase {
     public void testBoolean() throws Exception {
         mTrayAccessor.put(KEY, TEST_BOOL);
         assertEquals(TEST_BOOL, mTrayAccessor.getBoolean(KEY, false));
-        assertEquals(false, mTrayAccessor.getBoolean(WRONG_KEY, false));
+        assertFalse(mTrayAccessor.getBoolean(WRONG_KEY, false));
     }
 
     public void testChangeListener() throws Exception {

@@ -24,7 +24,7 @@
 
         <provider
             android:name=".provider.TrayContentProvider"
-            android:authorities="net.grandcentrix.tray.preferences.test"
+            android:authorities="net.grandcentrix.tray.test"
             android:exported="false"
             android:multiprocess="false"
             tools:replace="android:authorities" />

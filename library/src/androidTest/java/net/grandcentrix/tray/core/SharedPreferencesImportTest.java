@@ -157,7 +157,7 @@ public class SharedPreferencesImportTest extends TrayProviderTestCase {
     public void testShouldMigrate() throws Exception {
         final SharedPreferencesImport sharedPreferencesImport = new SharedPreferencesImport(
                 getContext(), SHARED_PREF_NAME, "key", "trayKey");
-        assertEquals(false, sharedPreferencesImport.shouldMigrate());
+        assertFalse(sharedPreferencesImport.shouldMigrate());
 
         mSharedPrefs.edit().putString("key", "data").commit();
         assertEquals(true, sharedPreferencesImport.shouldMigrate());

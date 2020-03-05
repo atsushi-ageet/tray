@@ -207,7 +207,7 @@ public abstract class TrayProviderTestCase extends ProviderTestCase2<TrayContent
         super.setUp();
 
         System.setProperty("dexmaker.dexcache",
-                "/data/data/" + BuildConfig.APPLICATION_ID + ".test/cache");
+                "/data/data/" + BuildConfig.LIBRARY_PACKAGE_NAME + ".test/cache");
         cleanupProvider();
 
         mIsolatedContext = new TrayIsolatedContext(getMockContext().getContentResolver(),

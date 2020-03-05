@@ -41,7 +41,7 @@ public class ReadDifferentFormat extends TrayProviderTestCase {
     public void testReadFloatAsWrongType() throws Exception {
         mPref.put(KEY, 25.1f);
         assertEquals(25.1f, mPref.getFloat(KEY));
-        assertEquals(false, mPref.getBoolean(KEY));
+        assertFalse(mPref.getBoolean(KEY));
         assertEquals("25.1", mPref.getString(KEY));
         try {
             assertEquals(25l, mPref.getLong(KEY));
@@ -60,7 +60,7 @@ public class ReadDifferentFormat extends TrayProviderTestCase {
     public void testReadIntAsWrongType() throws Exception {
         mPref.put(KEY, 25);
         assertEquals(25, mPref.getInt(KEY));
-        assertEquals(false, mPref.getBoolean(KEY));
+        assertFalse(mPref.getBoolean(KEY));
         assertEquals("25", mPref.getString(KEY));
         assertEquals(25f, mPref.getFloat(KEY));
         assertEquals(25l, mPref.getLong(KEY));
@@ -70,15 +70,15 @@ public class ReadDifferentFormat extends TrayProviderTestCase {
         mPref.put(KEY, Long.MAX_VALUE);
         assertEquals(Long.MAX_VALUE, mPref.getLong(KEY));
         assertEquals("9223372036854775807", mPref.getString(KEY));
-        assertEquals(false, mPref.getBoolean(KEY));
+        assertFalse(mPref.getBoolean(KEY));
 
         // this is kind of "false". 9.223... is not really the expected value
         assertEquals(Float.parseFloat(String.valueOf(Long.MAX_VALUE)), mPref.getFloat(KEY));
         try {
-            assertEquals(Long.MAX_VALUE, mPref.getInt(KEY));
+            mPref.getInt(KEY);
             fail();
         } catch (WrongTypeException e) {
-            assertTrue(e.getMessage().contains("int"));
+            assertTrue(e.getCause() instanceof NumberFormatException);
         }
     }
 
@@ -90,7 +90,7 @@ public class ReadDifferentFormat extends TrayProviderTestCase {
         assertEquals(null, pref.value());
         assertEquals(null, mPref.getString(KEY));
 
-        assertEquals(false, mPref.getBoolean(KEY));
+        assertFalse(mPref.getBoolean(KEY));
         try {
             assertEquals(0.0f, mPref.getFloat(KEY));
             fail();

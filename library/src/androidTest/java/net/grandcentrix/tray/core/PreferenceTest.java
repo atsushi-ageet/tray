@@ -213,7 +213,7 @@ public class PreferenceTest extends TestCase {
 
         // Boolean
         assertFalse(pref.put("a", true));
-        assertEquals(false, pref.getBoolean("a", false));
+        assertFalse(pref.getBoolean("a", false));
     }
 
     public void testRemove() throws Exception {

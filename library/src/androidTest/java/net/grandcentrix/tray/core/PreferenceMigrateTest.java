@@ -173,7 +173,7 @@ public class PreferenceMigrateTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         System.setProperty("dexmaker.dexcache",
-                "/data/data/" + BuildConfig.APPLICATION_ID + ".test/cache");
+                "/data/data/" + BuildConfig.LIBRARY_PACKAGE_NAME + ".test/cache");
         mDataStore = new HashMap<>();
         mDataStore.put(OLD_KEY, DATA);
         assertEquals(1, mDataStore.size());
