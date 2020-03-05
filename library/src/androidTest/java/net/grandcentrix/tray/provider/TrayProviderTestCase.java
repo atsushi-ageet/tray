@@ -24,7 +24,6 @@ import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -34,10 +33,8 @@ import android.os.Build;
 import android.test.IsolatedContext;
 import android.test.ProviderTestCase2;
 import android.test.mock.MockContentResolver;
-import android.test.mock.MockPackageManager;
 
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by pascalwelsch on 11/21/14.
@@ -48,8 +45,6 @@ public abstract class TrayProviderTestCase extends ProviderTestCase2<TrayContent
     public static class TrayIsolatedContext extends IsolatedContext {
 
         boolean mHasMockResolver = false;
-
-        private List<ProviderInfo> mProviderInfos;
 
         private HashMap<String, ContentProvider> mProviders = new HashMap<>();
 
@@ -107,21 +102,6 @@ public abstract class TrayProviderTestCase extends ProviderTestCase2<TrayContent
 
         public boolean isHasMockResolver() {
             return mHasMockResolver;
-        }
-
-        public void setProviderInfos(List<ProviderInfo> providerInfos) {
-            mProviderInfos = providerInfos;
-        }
-
-        @Override
-        public PackageManager getPackageManager() {
-            return new MockPackageManager() {
-                @Override
-                public List<ProviderInfo> queryContentProviders(final String processName,
-                        final int uid, final int flags) {
-                    return mProviderInfos;
-                }
-            };
         }
 
         @Override

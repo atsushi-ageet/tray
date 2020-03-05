@@ -20,17 +20,16 @@ import net.grandcentrix.tray.R;
 import net.grandcentrix.tray.core.TrayLog;
 import net.grandcentrix.tray.core.TrayRuntimeException;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.net.Uri;
-import android.os.Process;
 import android.provider.BaseColumns;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
-
-import java.util.List;
 
 /**
  * Contract defining the data in the {@link TrayContentProvider}. Use {@link TrayProviderHelper} to
@@ -122,22 +121,16 @@ class TrayContract {
 
         checkOldWayToSetAuthority(context);
 
-        // read all providers of the app and find the TrayContentProvider to read the authority
-        final List<ProviderInfo> providers = context.getPackageManager()
-                .queryContentProviders(context.getPackageName(), Process.myUid(), 0);
-        if (providers != null) {
-            for (ProviderInfo provider : providers) {
-                if (provider.name.equals(TrayContentProvider.class.getName())) {
-                    sAuthority = provider.authority;
-                    TrayLog.v("found authority: " + sAuthority);
-                    return sAuthority;
-                }
-            }
+        try {
+            ProviderInfo providerInfo = context.getPackageManager().getProviderInfo(new ComponentName(context, TrayContentProvider.class), 0);
+            sAuthority = providerInfo.authority;
+            TrayLog.v("found authority: " + sAuthority);
+            return sAuthority;
+        } catch (PackageManager.NameNotFoundException e) {
+            // Should never happen. Otherwise we implemented tray in a wrong way!
+            throw new TrayRuntimeException("Internal tray error. "
+                    + "Could not find the provider authority. "
+                    + "Please fill an issue at https://github.com/grandcentrix/tray/issues");
         }
-
-        // Should never happen. Otherwise we implemented tray in a wrong way!
-        throw new TrayRuntimeException("Internal tray error. "
-                + "Could not find the provider authority. "
-                + "Please fill an issue at https://github.com/grandcentrix/tray/issues");
     }
 }
