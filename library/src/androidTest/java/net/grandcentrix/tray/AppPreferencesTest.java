@@ -23,9 +23,4 @@ public class AppPreferencesTest extends TrayProviderTestCase {
     public void testInstantiation() throws Exception {
         new AppPreferences(getProviderMockContext());
     }
-
-    public void testLegacyInstantiation() throws Exception {
-        new TrayAppPreferences(getProviderMockContext());
-    }
-
 }

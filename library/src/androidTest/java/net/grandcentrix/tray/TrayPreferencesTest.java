@@ -37,9 +37,4 @@ public class TrayPreferencesTest extends TrayProviderTestCase {
 
         };
     }
-
-
-    public void testLegacyInstantiation() throws Exception {
-        new TrayModulePreferences(getProviderMockContext(), "test", 1);
-    }
 }
