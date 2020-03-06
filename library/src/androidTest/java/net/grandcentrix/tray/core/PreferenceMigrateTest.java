@@ -18,8 +18,8 @@ package net.grandcentrix.tray.core;
 
 import junit.framework.TestCase;
 
-import net.grandcentrix.tray.BuildConfig;
 import net.grandcentrix.tray.mock.MockTrayStorage;
+import net.grandcentrix.tray.test.BuildConfig;
 
 import androidx.annotation.NonNull;
 
@@ -173,7 +173,7 @@ public class PreferenceMigrateTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         System.setProperty("dexmaker.dexcache",
-                "/data/data/" + BuildConfig.LIBRARY_PACKAGE_NAME + ".test/cache");
+                "/data/data/" + BuildConfig.APPLICATION_ID + "/cache");
         mDataStore = new HashMap<>();
         mDataStore.put(OLD_KEY, DATA);
         assertEquals(1, mDataStore.size());

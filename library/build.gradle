@@ -12,8 +12,6 @@ android {
         versionCode VERSION_CODE
         versionName VERSION_NAME
 
-        resValue "string", "tray__authority", "legacyTrayAuthority"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -50,4 +48,9 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     testImplementation 'org.mockito:mockito-core:1.9.5'
     testImplementation 'junit:junit:4.12'
+}
+
+afterEvaluate {
+    generateDebugBuildConfig.enabled = false
+    generateReleaseBuildConfig.enabled = false
 }

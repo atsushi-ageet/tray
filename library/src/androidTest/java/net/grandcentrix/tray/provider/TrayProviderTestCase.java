@@ -16,8 +16,8 @@
 
 package net.grandcentrix.tray.provider;
 
-import net.grandcentrix.tray.BuildConfig;
 import net.grandcentrix.tray.core.TrayStorage;
+import net.grandcentrix.tray.test.BuildConfig;
 
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
@@ -187,7 +187,7 @@ public abstract class TrayProviderTestCase extends ProviderTestCase2<TrayContent
         super.setUp();
 
         System.setProperty("dexmaker.dexcache",
-                "/data/data/" + BuildConfig.LIBRARY_PACKAGE_NAME + ".test/cache");
+                "/data/data/" + BuildConfig.APPLICATION_ID + "/cache");
         cleanupProvider();
 
         mIsolatedContext = new TrayIsolatedContext(getMockContext().getContentResolver(),

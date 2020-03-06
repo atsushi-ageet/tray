@@ -85,24 +85,6 @@ class TrayContract {
         return generateContentUri(context, InternalPreferences.BASE_PATH);
     }
 
-    /**
-     * Inform if someone use the old way to set or override the authority
-     */
-    private static void checkOldWayToSetAuthority(final @NonNull Context context) {
-        if (!"legacyTrayAuthority".equals(context.getString(R.string.tray__authority))) {
-            Log.e("Tray", "Deprecated way of defining the Tray authority detected\n"
-                    + "#########################################\n"
-                    + "#########################################\n"
-                    + "#########################################\n"
-                    + "Don't set the authority with `tray__authority` in your build.gradle.\n"
-                    + "To change the default authority override it inside the AndroidManifest\n"
-                    + "See https://github.com/grandcentrix/tray/wiki/Custom-Authority for instructions\n"
-                    + "#########################################\n"
-                    + "#########################################\n"
-                    + "#########################################\n");
-        }
-    }
-
     @NonNull
     private static Uri generateContentUri(@NonNull final Context context, final String basepath) {
 
@@ -118,8 +100,6 @@ class TrayContract {
         if (sAuthority != null) {
             return sAuthority;
         }
-
-        checkOldWayToSetAuthority(context);
 
         try {
             ProviderInfo providerInfo = context.getPackageManager().getProviderInfo(new ComponentName(context, TrayContentProvider.class), 0);
