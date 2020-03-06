@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
-def final String VERSION_NAME = "0.13.0"
-def final int VERSION_CODE = 15
+def final String VERSION_NAME = "0.14.0"
+def final int VERSION_CODE = 16
 
 android {
     compileSdkVersion 29

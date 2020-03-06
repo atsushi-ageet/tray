@@ -158,7 +158,7 @@ allprojects {
 ```groovy
 
 dependencies {
-    compile 'com.github.atsushi-ageet:tray:0.13.0'
+    compile 'com.github.atsushi-ageet:tray:0.14.0'
 }
 
 ```
